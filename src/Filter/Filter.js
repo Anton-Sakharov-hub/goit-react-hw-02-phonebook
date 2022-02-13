@@ -8,7 +8,6 @@ class Filter extends Component {
 
     handleChenge = (evt) => {
         const { value } = evt.target;
-        console.log(this.props.filterHandler);
         this.setState({
             filter: value,
         });

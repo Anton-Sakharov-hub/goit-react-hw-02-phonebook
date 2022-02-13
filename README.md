@@ -17,3 +17,4 @@
 11. Yfcnhjbnm source maps
 12. Вынести проверку в отдельную функцию, но как прерывать функцию
 13. Нужен ли state в ContactForm и Filter
+14. filterDataHandler, filterContactsHandler ????

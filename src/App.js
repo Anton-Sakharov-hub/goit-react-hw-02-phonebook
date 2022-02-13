@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import './App.css';
 import ContactForm from './ContactForm';
 import Filter from './Filter';
+import ContactList from './ContactList';
 
 // const name ='    Anton        '.toLocaleLowerCase()
 // console.log(name.trim().length)
@@ -36,17 +37,14 @@ class App extends Component {
     this.addContactToState(name, number);
   }
 
-  filterHandler = (filterData) => {
-    console.log(filterData);
+  filterDataHandler = (filterData) => {
     this.setState({
       filter: filterData,
     })
-    console.log(this.state);;
   }
   
   filterContactsHandler = () => {
     const { contacts, filter } = this.state;
-    console.log(filter);
     const filtredContacts = contacts.filter(el => el.name.toLowerCase().includes(filter.toLowerCase()))
 
     return filtredContacts;
@@ -70,14 +68,7 @@ class App extends Component {
         <h2>Contacts</h2>
         <h3>Find contacts by name</h3>
         <Filter filterHandler={this.filterHandler}/>
-        <ul>
-          {(filter ? this.filterContactsHandler() : contacts).map(el => (
-            <li key={el.id} >
-              {`${el.name}: ${el.number}`}
-              <button type="button" name={el.name} onClick={this.onDeleteClick}>Delete</button>
-            </li>
-          ))}
-        </ul>
+        <ContactList filter={filter} contacts={contacts} filterContactsHandler={this.filterContactsHandler}/>
       </div>
     );
   }
