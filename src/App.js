@@ -37,13 +37,16 @@ class App extends Component {
   }
 
   filterHandler = (filterData) => {
+    console.log(filterData);
     this.setState({
       filter: filterData,
     })
+    console.log(this.state);;
   }
   
   filterContactsHandler = () => {
     const { contacts, filter } = this.state;
+    console.log(filter);
     const filtredContacts = contacts.filter(el => el.name.toLowerCase().includes(filter.toLowerCase()))
 
     return filtredContacts;

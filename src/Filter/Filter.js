@@ -6,8 +6,13 @@ class Filter extends Component {
         filter: '',
     }
 
-    handleChenge = () => {
-        debounce(this.props.filterHandler({ ...this.state }), 500);
+    handleChenge = (evt) => {
+        const { value } = evt.target;
+        console.log(this.props.filterHandler);
+        this.setState({
+            filter: value,
+        });
+        debounce(this.props.filterHandler(this.state.filter), 500);
     }
 
     render() {
