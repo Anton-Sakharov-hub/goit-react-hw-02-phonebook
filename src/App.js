@@ -51,8 +51,8 @@ class App extends Component {
   }
 
 
-  onDeleteClick = (evt) => {
-    const {name} = evt.target;
+  onDelete = (name) => {
+    // const {name} = evt.target;
 
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(el => el.name.toLowerCase().trim() !== name.toLowerCase().trim()),
@@ -68,7 +68,7 @@ class App extends Component {
         <h2>Contacts</h2>
         <h3>Find contacts by name</h3>
         <Filter filterHandler={this.filterHandler}/>
-        <ContactList filter={filter} contacts={contacts} filterContactsHandler={this.filterContactsHandler}/>
+        <ContactList filter={filter} contacts={contacts} filterContactsHandler={this.filterContactsHandler} onDelete={ this.onDelete}/>
       </div>
     );
   }
