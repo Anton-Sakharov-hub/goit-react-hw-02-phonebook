@@ -45,9 +45,11 @@ class App extends Component {
   
   filterContactsHandler = () => {
     const { contacts, filter } = this.state;
+    console.log(filter);
     const filtredContacts = contacts.filter(el => el.name.toLowerCase().includes(filter.toLowerCase()))
+    console.log(filtredContacts);
 
-    return filtredContacts;
+    return filter ? filtredContacts : contacts;
   }
 
 
@@ -67,8 +69,8 @@ class App extends Component {
         <ContactForm onSubmitHandler={this.onFormSubmit}/>
         <h2>Contacts</h2>
         <h3>Find contacts by name</h3>
-        <Filter filterHandler={this.filterHandler}/>
-        <ContactList filter={filter} contacts={contacts} filterContactsHandler={this.filterContactsHandler} onDelete={ this.onDelete}/>
+        <Filter filterDataHandler={this.filterDataHandler}/>
+        <ContactList filter={filter} contacts={contacts} filterContactsHandler={this.filterContactsHandler} onDelete={this.onDelete}/>
       </div>
     );
   }

@@ -11,7 +11,7 @@ class Filter extends Component {
         this.setState({
             filter: value,
         });
-        debounce(this.props.filterHandler(this.state.filter), 500);
+        debounce(this.props.filterDataHandler(this.state.filter), 500);
     }
 
     render() {
