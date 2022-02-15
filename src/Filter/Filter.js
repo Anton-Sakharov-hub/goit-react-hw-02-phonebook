@@ -2,16 +2,12 @@ import { Component } from 'react';
 import { debounce } from 'debounce';
 
 class Filter extends Component {
-    state = {
-        filter: '',
-    }
-
+    debouncedFilterData = debounce(this.props.filterDataHandler, 500);
+    
     handleChenge = (evt) => {
         const { value } = evt.target;
-        this.setState({
-            filter: value,
-        });
-        debounce(this.props.filterDataHandler(this.state.filter), 500);
+
+        this.debouncedFilterData(value);
     }
 
     render() {
@@ -20,7 +16,6 @@ class Filter extends Component {
           type='text'
           name="filter"
           onChange={this.handleChenge}
-          value={this.state.filter}
           /> 
     )}
 }

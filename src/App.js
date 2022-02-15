@@ -5,9 +5,6 @@ import ContactForm from './ContactForm';
 import Filter from './Filter';
 import ContactList from './ContactList';
 
-// const name ='    Anton        '.toLocaleLowerCase()
-// console.log(name.trim().length)
-
 class App extends Component {
   state = {
     contacts: [
@@ -19,10 +16,12 @@ class App extends Component {
     filter: '',
   }
 
+  hasContact(name) {
+    return this.state.contacts.find(el => el.name.toLowerCase().trim() === name.toLowerCase().trim());
+  }
+
   addContactToState = (name, number) => {
-    const isIncludeContact = this.state.contacts.find(el => el.name.toLowerCase().trim() === name.toLowerCase().trim());
-    
-    if (isIncludeContact) {
+    if (this.hasContact(name)) {
       alert(`${name} already in contacts`);
       return;
     };
@@ -43,19 +42,15 @@ class App extends Component {
     })
   }
   
-  filterContactsHandler = () => {
+  filteredContacts = () => {
     const { contacts, filter } = this.state;
-    console.log(filter);
-    const filtredContacts = contacts.filter(el => el.name.toLowerCase().includes(filter.toLowerCase()))
-    console.log(filtredContacts);
+    const filtredContacts = contacts.filter(el => el.name.toLowerCase().includes(filter.toLowerCase()));
 
-    return filter ? filtredContacts : contacts;
+    return filtredContacts;
   }
 
 
   onDelete = (name) => {
-    // const {name} = evt.target;
-
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(el => el.name.toLowerCase().trim() !== name.toLowerCase().trim()),
     }));
@@ -70,10 +65,11 @@ class App extends Component {
         <h2>Contacts</h2>
         <h3>Find contacts by name</h3>
         <Filter filterDataHandler={this.filterDataHandler}/>
-        <ContactList filter={filter} contacts={contacts} filterContactsHandler={this.filterContactsHandler} onDelete={this.onDelete}/>
+        <ContactList contacts={filter ? this.filteredContacts() : contacts} onDelete={this.onDelete}/>
       </div>
     );
   }
 }
 
 export default App;
+
