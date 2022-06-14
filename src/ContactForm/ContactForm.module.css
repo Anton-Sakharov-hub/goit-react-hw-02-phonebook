@@ -1,0 +1,20 @@
+/* .ContactForm {
+    display: flex;
+    flex-direction: column;
+} */
+
+.formInput {
+    margin-left: 5px;
+}
+
+/* .formInput:hover, 
+.formInput:focus {
+    border: 2px solid black;
+    border-radius: 4px;
+    
+} */
+
+.formInputLabel {
+    margin-left: 10px;
+}
+
